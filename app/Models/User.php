@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $primaryKey = 'user_id';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -45,6 +47,6 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Role');
+        return $this->belongsToMany(User::class, 'role_user', 'user_id', 'role_id');
     }
 }
